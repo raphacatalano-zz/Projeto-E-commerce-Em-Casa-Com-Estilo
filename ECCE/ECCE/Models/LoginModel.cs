@@ -12,5 +12,7 @@ namespace ECCE.Models
 
         [Display(Name = "Nome", Prompt ="")]
         public string Nome { get; set; }
+
+        public string Email { get; set; }
     }
 }
