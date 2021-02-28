@@ -13,6 +13,12 @@ namespace ECCE.Controllers
     {
         public IActionResult Index()
         {
+
+            return View();
+        }
+
+        public IActionResult CadastroProduto()
+        {
             ProdutoDB Cat = new ProdutoDB();
             ProdutoDB Cor = new ProdutoDB();
             ProdutoDB Foto = new ProdutoDB();
@@ -27,11 +33,6 @@ namespace ECCE.Controllers
             ViewData["LTTam"] = Tam.GetTamanho();
 
             ViewData["Valida"] = "";
-            return View();
-        }
-
-        public IActionResult CadastroProduto()
-        {
             return View();
         }
 

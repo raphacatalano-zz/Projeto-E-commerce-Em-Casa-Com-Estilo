@@ -380,7 +380,7 @@ namespace ECCE.Data
                 MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
                 cn.Open();
 
-                sSQL = "select * from tb_foto";
+                sSQL = "select * from tb_produto_foto";
                 cmd.CommandText = sSQL;
                 cmd.Connection = cn;
                 var Dr = cmd.ExecuteReader();
