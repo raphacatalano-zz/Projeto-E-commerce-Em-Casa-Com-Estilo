@@ -6,48 +6,52 @@
     var LTFoto = (List<SelectListItem>)(@ViewData["LTFoto"]);
     var LTGenero = (List<SelectListItem>)(@ViewData["LTGenero"]);
     var LTTam = (List<SelectListItem>)(@ViewData["LTTam"]);
+
+    Layout = "_Layout_dashboard";
 }
 
 
 
 
-    <h1>Cadastro de Produto</h1>
+<h1>Cadastro de Produto</h1>
 
-    <form asp-action="Salvar" asp-controller="Produto">
-        <div class="form-group">
-            <label asp-for="tb_produto.Nome"></label>
-            <input type="text" class="form-control" asp-for="tb_produto.Nome">
-            <label asp-for="tb_produto.Descricao"></label>
-            <input type="text" class="form-control" asp-for="tb_produto.Descricao">
-            <label asp-for="tb_produto.Valor"></label>
-            <input type="text" class="form-control" asp-for="tb_produto.Valor">
-            <label asp-for="tb_produto.DataRegistro"></label>
-            <input type="date" class="form-control" asp-for="tb_produto.DataRegistro">
-            <label asp-for="tb_produto.Peso"></label>
-            <input type="text" class="form-control" asp-for="tb_produto.Peso">
+<form asp-action="Salvar" asp-controller="Produto">
+    <div class="form-group">
+        <label asp-for="tb_produto.Nome"></label>
+        <input type="text" class="form-control" asp-for="tb_produto.Nome">
+        <label asp-for="tb_produto.Descricao"></label>
+        <input type="text" class="form-control" asp-for="tb_produto.Descricao">
+        <label asp-for="tb_produto.Valor"></label>
+        <input type="text" class="form-control" asp-for="tb_produto.Valor">
+        <label asp-for="tb_produto.DataRegistro"></label>
+        <input type="date" class="form-control" asp-for="tb_produto.DataRegistro">
+        <label asp-for="tb_produto.Peso"></label>
+        <input type="text" class="form-control" asp-for="tb_produto.Peso">
 
-            <label asp-for="Categoria"></label>
-            <select asp-for="Categoria" asp-items="LTCategorias" class="form-control"></select>
+        <label asp-for="Categoria"></label>
+        <select asp-for="Categoria" asp-items="LTCategorias" class="form-control"></select>
 
-            <label asp-for="Cor"></label>
-            <select asp-for="Cor" asp-items="LTCor" class="form-control"></select>
+        <label asp-for="Cor"></label>
+        <select asp-for="Cor" asp-items="LTCor" class="form-control"></select>
 
-            <label asp-for="Foto"></label>
-            <select asp-for="Foto" asp-items="LTFoto" class="form-control"></select>
+        <label asp-for="Foto"></label>
+        <select asp-for="Foto" asp-items="LTFoto" class="form-control"></select>
 
-            <label asp-for="Genero"></label>
-            <select asp-for="Genero" asp-items="LTGenero" class="form-control"></select>
+        <label asp-for="Genero"></label>
+        <select asp-for="Genero" asp-items="LTGenero" class="form-control"></select>
 
-            <label asp-for="Tamanho"></label>
-            <select asp-for="Tamanho" asp-items="LTTam" class="form-control"></select>
+        <label asp-for="Tamanho"></label>
+        <select asp-for="Tamanho" asp-items="LTTam" class="form-control"></select>
 
 
-            <input type="hidden" asp-for="tb_produto.CodigoProduto">
+        <input type="hidden" asp-for="tb_produto.CodigoProduto">
 
-        </div>
+    </div>
 
-        @Html.Raw(ViewData["Valida"])
+    @Html.Raw(ViewData["Valida"])
 
-        <button type="submit" class="btn btn-primary">Registrar</button>
+    <button type="submit" class="btn btn-primary">Registrar</button>
 
-    </form>
+</form>
+
+
