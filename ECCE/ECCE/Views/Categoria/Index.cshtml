@@ -1,0 +1,45 @@
+﻿@{
+    @model List<tb_categoria>;
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h4>Lista de Categorias</h4>
+    @if (Model.Count > 0)
+    {
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.CodigoCategoria</td>
+                    <td>@item.Descricao</td>
+                    <td><button type="button" class="btn btn-warning" onclick="window.location.href='/categoria/editar?CodigoCategoria=@item.CodigoCategoria&Descricao=@item.Descricao'">Editar</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="window.location.href='/categoria/excluir?CodigoCategoria=@item.CodigoCategoria'">Excluir</button></td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-primary" role="alert">
+            Sem Registros!
+        </div>
+    }
+
+</div>
+
+
+
+
