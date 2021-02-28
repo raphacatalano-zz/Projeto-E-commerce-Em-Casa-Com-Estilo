@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using ECCE.Classes;
 using ECCE.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ECCE.Data
 {
@@ -18,16 +19,20 @@ namespace ECCE.Data
             {
                 string sSQL = "";
                 MySqlCommand cmd = new MySqlCommand();
-                MySqlConnection cn = new MySqlConnection(CConexao.GET_StringConexao());
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
                 cn.Open();
 
                 sSQL = "insert into tb_funcionario(Nome)values(@nome)";
-                cmd.Parameters.AddWithValue("@nome", obj.tb_funcionario.Nome);
+                cmd.Parameters.AddWithValue("@nome", obj.tb_produto.Nome);
 
                 cmd.CommandText = sSQL;
                 cmd.Connection = cn;
                 cmd.ExecuteNonQuery();
-                AddBNF(obj);
+                AddCategoria(obj);
+                AddCor(obj);
+                AddFoto(obj);
+                _ = AddGenero(obj);
+                AddTamanho(obj);
                 return true;
             }
             catch (Exception e)
@@ -39,7 +44,6 @@ namespace ECCE.Data
 
         public bool AddCategoria(ProdutoModel obj)
         {
-
             try
             {
                 string sSQL = "";
@@ -82,7 +86,7 @@ namespace ECCE.Data
                 }
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -244,57 +248,235 @@ namespace ECCE.Data
             }
         }
 
-
-        public bool UpdateDados(ProdutoModel obj)
+        public bool AddTamanho(ProdutoModel obj)
         {
 
             try
             {
                 string sSQL = "";
                 MySqlCommand cmd = new MySqlCommand();
-                MySqlConnection cn = new MySqlConnection(CConexao.GET_StringConexao());
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
                 cn.Open();
-
-                sSQL = "update tb_funcionario set Nome=@nome where CodigoFuncionario=@CodigoFuncionario";
-                cmd.Parameters.AddWithValue("@nome", obj.tb_funcionario.Nome);
-                cmd.Parameters.AddWithValue("@CodigoFuncionario", obj.tb_funcionario.CodigoFuncionario);
-
-                cmd.CommandText = sSQL;
                 cmd.Connection = cn;
+
+                var CodigoProduto = obj.tb_produto.CodigoProduto;
+                if (obj.tb_produto.CodigoProduto == 0)
+                {
+                    sSQL = "select CodigoProduto from tb_produto order by CodigoProduto desc limit 1 ";
+                    cmd.Parameters.AddWithValue("@nome", obj.tb_produto.Nome);
+                    cmd.CommandText = sSQL;
+                    var Dr = cmd.ExecuteReader();
+                    Dr.Read();
+                    CodigoProduto = Convert.ToInt32(Dr["CodigoProduto"].ToString());
+                    Dr.Dispose();
+                }
+                int CodigoTamanho = 0;
+
+                //Deletando Registros antes do insert caso for update
+                cmd.Parameters.Clear();
+                sSQL = "delete from tb_produto_tamanho where CodigoProduto=" + CodigoProduto;
+                cmd.CommandText = sSQL;
                 cmd.ExecuteNonQuery();
-                AddBNF(obj);
+
+
+                foreach (var item in obj.tb_produto_genero)
+                {
+                    CodigoTamanho++;
+                    cmd.Parameters.Clear();
+                    sSQL = "insert into tb_produto_tamanho (CodigoTamanho,CodigoProduto)";
+                    sSQL += "values(@CodigoTamanho,@CodigoProduto)";
+                    cmd.Parameters.AddWithValue("@CodigoTamanho", CodigoTamanho);
+                    cmd.Parameters.AddWithValue("@CodigoProduto", CodigoProduto);
+
+                    cmd.CommandText = sSQL;
+                    cmd.ExecuteNonQuery();
+                }
                 return true;
             }
             catch (Exception e)
             {
-                string msg = e.Message;
                 return false;
             }
         }
 
-        public bool ExcluirDados(int Codigo)
+        public List<SelectListItem> GetCategoria()
         {
-
             try
             {
                 string sSQL = "";
                 MySqlCommand cmd = new MySqlCommand();
-                MySqlConnection cn = new MySqlConnection(CConexao.GET_StringConexao());
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
                 cn.Open();
 
-                sSQL = "delete from tb_funcionario where CodigoFuncionario=@CodigoFuncionario;";
-                sSQL += "delete from tb_funcionario_beneficios where CodigoFuncionario=@CodigoFuncionario;";
-                cmd.Parameters.AddWithValue("@CodigoFuncionario", Codigo);
-
+                sSQL = "select * from tb_categoria";
                 cmd.CommandText = sSQL;
                 cmd.Connection = cn;
-                cmd.ExecuteNonQuery();
-                return true;
+                var Dr = cmd.ExecuteReader();
+
+                List<SelectListItem> LT = new List<SelectListItem>();
+
+                while (Dr.Read())
+                {
+                    var item = new SelectListItem
+                    {
+                        Value = Dr["CodigoCategoria"].ToString(),
+                        Text = Dr["Descricao"].ToString(),
+                    };
+
+                    LT.Add(item);
+                }
+
+                return LT;
             }
             catch (Exception e)
             {
                 string msg = e.Message;
-                return false;
+                return null;
+            }
+        }
+
+        public List<SelectListItem> GetCor()
+        {
+            try
+            {
+                string sSQL = "";
+                MySqlCommand cmd = new MySqlCommand();
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
+                cn.Open();
+
+                sSQL = "select * from tb_cor";
+                cmd.CommandText = sSQL;
+                cmd.Connection = cn;
+                var Dr = cmd.ExecuteReader();
+
+                List<SelectListItem> LT = new List<SelectListItem>();
+
+                while (Dr.Read())
+                {
+                    var item = new SelectListItem
+                    {
+                        Value = Dr["CodigoCor"].ToString(),
+                        Text = Dr["Descricao"].ToString(),
+                    };
+
+                    LT.Add(item);
+                }
+
+                return LT;
+            }
+            catch (Exception e)
+            {
+                string msg = e.Message;
+                return null;
+            }
+        }
+
+        public List<SelectListItem> GetFoto()
+        {
+            try
+            {
+                string sSQL = "";
+                MySqlCommand cmd = new MySqlCommand();
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
+                cn.Open();
+
+                sSQL = "select * from tb_foto";
+                cmd.CommandText = sSQL;
+                cmd.Connection = cn;
+                var Dr = cmd.ExecuteReader();
+
+                List<SelectListItem> LT = new List<SelectListItem>();
+
+                while (Dr.Read())
+                {
+                    var item = new SelectListItem
+                    {
+                        Value = Dr["CodigoFoto"].ToString(),
+                        Text = Dr["Descricao"].ToString(),
+                    };
+
+                    LT.Add(item);
+                }
+
+                return LT;
+            }
+            catch (Exception e)
+            {
+                string msg = e.Message;
+                return null;
+            }
+        }
+
+        public List<SelectListItem> GetGenero()
+        {
+            try
+            {
+                string sSQL = "";
+                MySqlCommand cmd = new MySqlCommand();
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
+                cn.Open();
+
+                sSQL = "select * from tb_genero";
+                cmd.CommandText = sSQL;
+                cmd.Connection = cn;
+                var Dr = cmd.ExecuteReader();
+
+                List<SelectListItem> LT = new List<SelectListItem>();
+
+                while (Dr.Read())
+                {
+                    var item = new SelectListItem
+                    {
+                        Value = Dr["CodigoGenero"].ToString(),
+                        Text = Dr["Descricao"].ToString(),
+                    };
+
+                    LT.Add(item);
+                }
+
+                return LT;
+            }
+            catch (Exception e)
+            {
+                string msg = e.Message;
+                return null;
+            }
+        }
+
+
+        public List<SelectListItem> GetTamanho()
+        {
+            try
+            {
+                string sSQL = "";
+                MySqlCommand cmd = new MySqlCommand();
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
+                cn.Open();
+
+                sSQL = "select * from tb_tamanho";
+                cmd.CommandText = sSQL;
+                cmd.Connection = cn;
+                var Dr = cmd.ExecuteReader();
+
+                List<SelectListItem> LT = new List<SelectListItem>();
+
+                while (Dr.Read())
+                {
+                    var item = new SelectListItem
+                    {
+                        Value = Dr["CodigoTamanho"].ToString(),
+                        Text = Dr["Descricao"].ToString(),
+                    };
+
+                    LT.Add(item);
+                }
+
+                return LT;
+            }
+            catch (Exception e)
+            {
+                string msg = e.Message;
+                return null;
             }
         }
 
@@ -305,10 +487,10 @@ namespace ECCE.Data
             {
                 string sSQL = "";
                 MySqlCommand cmd = new MySqlCommand();
-                MySqlConnection cn = new MySqlConnection(CConexao.GET_StringConexao());
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
                 cn.Open();
 
-                sSQL = "select * from tb_funcionario where nome=@nome";
+                sSQL = "select * from tb_produto where nome=@nome";
                 cmd.Parameters.AddWithValue("@nome", obj.Nome);
 
                 cmd.CommandText = sSQL;
@@ -324,100 +506,6 @@ namespace ECCE.Data
         }
 
 
-        public List<tb_produto> GetAll()
-        {
-
-            try
-            {
-                string sSQL = "";
-                MySqlCommand cmd = new MySqlCommand();
-                MySqlConnection cn = new MySqlConnection(CConexao.GET_StringConexao());
-                cn.Open();
-
-                sSQL = "select * from tb_funcionario order by nome";
-                cmd.CommandText = sSQL;
-                cmd.Connection = cn;
-                var Dr = cmd.ExecuteReader();
-
-                var Lista = new List<tb_funcionario>();
-
-                while (Dr.Read())
-                {
-                    var item = new tb_funcionario
-                    {
-                        CodigoFuncionario = Convert.ToInt32(Dr["CodigoFuncionario"]),
-                        Nome = Dr["Nome"].ToString()
-                    };
-
-                    Lista.Add(item);
-                }
-
-                return Lista;
-            }
-            catch (Exception e)
-            {
-                string msg = e.Message;
-                return null;
-            }
-        }
-
-
-        public ProdutoModel GetFuncionario(int CodigoFuncionario)
-        {
-
-            try
-            {
-                string sSQL = "";
-                MySqlCommand cmd = new MySqlCommand();
-                MySqlConnection cn = new MySqlConnection(CConexao.GET_StringConexao());
-                cn.Open();
-
-                sSQL = "select * from tb_funcionario where CodigoFuncionario=@CodigoFuncionario";
-                cmd.Parameters.AddWithValue("@CodigoFuncionario", CodigoFuncionario);
-                cmd.CommandText = sSQL;
-                cmd.Connection = cn;
-                var DrFun = cmd.ExecuteReader();
-                DrFun.Read();
-
-
-                var tbFun = new tb_funcionario()
-                {
-                    CodigoFuncionario = Convert.ToInt32(DrFun["CodigoFuncionario"]),
-                    Nome = DrFun["Nome"].ToString()
-                };
-
-                DrFun.Dispose();
-
-                //Carrega BNF                
-                sSQL = "select * from tb_funcionario_beneficios where CodigoFuncionario=@CodigoFuncionario";
-                cmd.CommandText = sSQL;
-                var DrBNFS = cmd.ExecuteReader();
-
-                var tb_bnf = new List<tb_funcionario_beneficios>();
-
-                while (DrBNFS.Read())
-                {
-                    tb_bnf.Add(new tb_funcionario_beneficios()
-                    {
-                        CodigoBeneficio = Convert.ToInt32(DrBNFS["CodigoBeneficio"]),
-                        CodigoFuncionario = Convert.ToInt32(DrBNFS["CodigoFuncionario"]),
-                        Descricao = DrBNFS["Descricao"].ToString(),
-                        Valor = Convert.ToDouble(DrBNFS["Valor"])
-                    });
-                }
-
-                var model = new FuncionarioModel();
-                model.tb_funcionario = tbFun;
-                model.tb_funcionario_beneficios = tb_bnf;
-
-                return model;
-            }
-            catch (Exception e)
-            {
-                string msg = e.Message;
-                return null;
-            }
-        }
 
     }
 }

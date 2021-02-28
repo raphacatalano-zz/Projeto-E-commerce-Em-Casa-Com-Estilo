@@ -21,22 +21,22 @@ namespace ECCE.Models
     public class tb_produto
     {
         [Key]
-        public int CodigoProduto { get; set; }  // ADICIONAR O ATRIBUTO [KEY] SE O CAMPO FOR AUTONUMERIC,ASSIM ELE NÃO ENTRA NO INSERT.
+        public int CodigoProduto { get; set; }
 
         [Display(Name = "Nome", Prompt = "")]
         public string Nome { get; set; }
 
         [Display(Name = "Descrição", Prompt = "")]
-        public double Descricao { get; set; }
+        public string Descricao { get; set; }
 
         [Display(Name = "Valor", Prompt = "")]
         public double Valor { get; set; }
 
         [Display(Name = "Data Registro", Prompt = "")]
-        public int DataRegistro { get; set; }
+        public DateTime DataRegistro { get; set; }
 
         [Display(Name = "Peso", Prompt = "")]
-        public int Peso { get; set; }
+        public double Peso { get; set; }
     }
 
     public class tb_produto_categoria
@@ -67,6 +67,16 @@ namespace ECCE.Models
     {
         public int CodigoTamanho { get; set; }
         public int CodigoProduto { get; set; }
+    }
+
+    public class ProdutoModelVW : ProdutoModel
+    {
+        public string Categoria { get; set; }
+        public string Cor { get; set; }
+        public string Foto { get; set; }
+        public string Genero { get; set; }
+
+        public string Tamanho { get; set; }
     }
 
 }
