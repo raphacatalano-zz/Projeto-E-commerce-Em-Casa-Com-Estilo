@@ -14,7 +14,12 @@ namespace ECCE.Models
         public List<tb_produto_foto> tb_produto_foto { get; set; }
         public List<tb_produto_genero> tb_produto_genero { get; set; }
         public List<tb_produto_tamanho> tb_produto_tamanho { get; set; }
-        public string JsonLTBNF { get; set; }
+        public string JsonLTCat { get; set; }
+        public string JsonLTCor { get; set; }
+        public string JsonLTFoto { get; set; }
+        public string JsonLTGen { get; set; }
+        public string JsonLTTam { get; set; }
+
 
     }
 
@@ -75,7 +80,6 @@ namespace ECCE.Models
         public string Cor { get; set; }
         public string Foto { get; set; }
         public string Genero { get; set; }
-
         public string Tamanho { get; set; }
     }
 
