@@ -123,6 +123,6 @@ C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\
 C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Produto\Index.cshtml.g.cs
 C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout_dashboard.cshtml.g.cs
-C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Produto\CadastroProduto - Cópia.cshtml.g.cs
 C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Categoria\CadastroCategoria.cshtml.g.cs
 C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Categoria\Index.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Produto\CadastroProduto.cshtml.g.cs
