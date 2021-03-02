@@ -7,7 +7,6 @@
     var LTGenero = (List<SelectListItem>)(@ViewData["LTGenero"]);
     var LTTam = (List<SelectListItem>)(@ViewData["LTTam"]);
 
-    Layout = "_Layout_dashboard";
 }
 
 
@@ -35,13 +34,15 @@
         <select asp-for="Cor" asp-items="LTCor" class="form-control"></select>
 
         <label asp-for="Foto"></label>
-        <select asp-for="Foto" asp-items="LTFoto" class="form-control"></select>
+        <button type="submit" class="btn btn-primary">Escolher Foto</button><br />
 
         <label asp-for="Genero"></label>
         <select asp-for="Genero" asp-items="LTGenero" class="form-control"></select>
 
         <label asp-for="Tamanho"></label>
         <select asp-for="Tamanho" asp-items="LTTam" class="form-control"></select>
+
+
 
 
         <input type="hidden" asp-for="tb_produto.CodigoProduto">

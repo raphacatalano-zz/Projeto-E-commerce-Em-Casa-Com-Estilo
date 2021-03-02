@@ -1,8 +1,38 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    @model List<ProdutoModel>;
+    ViewData["Title"] = "Home Page";
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Produto Index</h1>
+<div>
+    <table class="table">
+        <tr>
+            <th><h4>Produtos</h4></th>
+            <th></th>
+            <th></th>
+            <th class="text-sm-right"><button class="btn btn-primary" type="button" onclick="">Novo Produto</button></th>
+
+        </tr>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>2</th>
+                <th>Elegante XX</th>
+                <td><button class="btn btn-primary" type="button" onclick="">Visualizar</button></td>
+                <td><button class="btn btn-primary" type="button" onclick="">Excluir</button></td>
+            </tr>
+        </thead>
+    </table>
 
 </div>
+
+
+
+

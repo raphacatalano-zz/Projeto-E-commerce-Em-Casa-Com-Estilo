@@ -1,5 +1,5 @@
 ﻿@{
-    @model List<tb_categoria>;
+    @model List<tb_cor>;
     ViewData["Title"] = "Home Page";
 
 }
@@ -7,10 +7,10 @@
 <div >
     <table class="table">
         <tr>
-            <th><h2>Categorias de Produtos</h2></th>
+            <th><h2>Cores</h2></th>
             <th></th>
             <th></th>
-            <th class="text-sm-right"><button class="btn btn-primary" type="button" onclick="window.location.href ='/categoria/cadastrocategoria'">Nova Categoria</button>
+            <th class="text-sm-right"><button class="btn btn-primary" type="button" onclick="window.location.href ='/cor/cadastrocor'">Nova Categoria</button>
             <th>
         </tr>
     </table>
@@ -30,10 +30,10 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.CodigoCategoria</td>
+                        <td>@item.CodigoCor</td>
                         <td>@item.Descricao</td>
-                        <td><button type="button" class="btn btn-warning" onclick="window.location.href='/categoria/editar?CodigoCategoria=@item.CodigoCategoria&Descricao=@item.Descricao'">Editar</button></td>
-                        <td><button type="button" class="btn btn-danger" onclick="window.location.href='/categoria/excluir?CodigoCategoria=@item.CodigoCategoria'">Excluir</button></td>
+                        <td><button type="button" class="btn btn-warning" onclick="window.location.href='/cor/editar?CodigoCor=@item.CodigoCor&Descricao=@item.Descricao'">Editar</button></td>
+                        <td><button type="button" class="btn btn-danger" onclick="window.location.href='/cor/excluir?CodigoCor=@item.CodigoCor'">Excluir</button></td>
 
                     </tr>
                 }

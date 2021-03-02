@@ -26,6 +26,12 @@ namespace ECCE.Controllers
             return View();
         }
 
+        public IActionResult Excluir(int codigocategoria)
+        {
+            CategoriaDB Cat = new CategoriaDB();
+            Cat.ExcluirDados(codigocategoria);
+            return RedirectToAction("index", "categoria");
+        }
 
         public IActionResult Editar(int CodigoCategoria, string Descricao)
         {

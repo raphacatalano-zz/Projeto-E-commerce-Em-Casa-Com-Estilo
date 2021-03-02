@@ -126,3 +126,5 @@ C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\
 C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Categoria\CadastroCategoria.cshtml.g.cs
 C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Categoria\Index.cshtml.g.cs
 C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Produto\CadastroProduto.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Cor\CadastroCor.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\Projeto-E-commerce-Em-Casa-Com-Estilo\ECCE\ECCE\obj\Debug\netcoreapp3.1\Razor\Views\Cor\Index.cshtml.g.cs
