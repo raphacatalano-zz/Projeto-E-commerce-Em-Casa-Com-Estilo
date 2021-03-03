@@ -12,8 +12,8 @@ namespace ECCE.Controllers
     {
         public IActionResult Index()
         {
-            GeneroDB Cor = new GeneroDB();
-            var MLista = Cor.GetAllGenero();
+            GeneroDB Genero = new GeneroDB();
+            var MLista = Genero.GetAllGenero();
             return View(MLista);
         }
 
@@ -26,63 +26,63 @@ namespace ECCE.Controllers
         public IActionResult Excluir(int CodigoGenero)
         {
             GeneroDB Cor = new GeneroDB();
-            Cor.ExcluirDados(codigocor);
-            return RedirectToAction("index", "cor");
+            Cor.ExcluirDados(CodigoGenero);
+            return RedirectToAction("index", "genero");
         }
 
-        public IActionResult Editar(int CodigoCor, string Descricao)
+        public IActionResult Editar(int CodigoGenero, string Descricao)
         {
-            var model = new tb_cor();
-            model.CodigoCor = CodigoCor;
+            var model = new tb_genero();
+            model.CodigoGenero = CodigoGenero;
             model.Descricao = Descricao;
             ViewData["Valida"] = "";
-            return View("CadastroCor", model);
+            return View("CadastroGenero", model);
         }
 
-        public IActionResult Salvar(tb_cor obj)
+        public IActionResult Salvar(tb_genero obj)
         {
             string smgvalida = Validar(obj);
             if(smgvalida != "")
             {
                 ViewData["Valida"] = smgvalida;
-                return View("CadastroCor");
+                return View("CadastroGenero");
             }
 
-            CorDB Cor = new CorDB();
+            GeneroDB Genero = new GeneroDB();
 
-            if(obj.CodigoCor == 0)
+            if(obj.CodigoGenero == 0)
             {
-                if (Cor.InserirDados(obj))
+                if (Genero.InserirDados(obj))
                 {
-                    ViewData["Valida"] = "<div class='alert alert-success text-center' role='alert'>Cor inserida com sucesso!</div>";
+                    ViewData["Valida"] = "<div class='alert alert-success text-center' role='alert'>Genero inserido com sucesso!</div>";
                 }
                 else
                 {
-                    ViewData["Valida"] = "<div class='alert alert-danger text-center' role='alert'>Erro ao inserir Cor!</div>";
+                    ViewData["Valida"] = "<div class='alert alert-danger text-center' role='alert'>Erro ao inserir Genero!</div>";
                 }
             }
             else
             {
-                if (Cor.UpDateDados(obj))
+                if (Genero.UpDateDados(obj))
                 {
-                    ViewData["Valida"] = "<div class='alert alert-success text-center' role='alert'>Cor atualizada com sucesso!</div>";
+                    ViewData["Valida"] = "<div class='alert alert-success text-center' role='alert'>Genero atualizado com sucesso!</div>";
                 }
                 else
                 {
-                    ViewData["Valida"] = "<div class='alert alert-danger text-center' role='alert'>Erro ao atualizar Cor!</div>";
+                    ViewData["Valida"] = "<div class='alert alert-danger text-center' role='alert'>Erro ao atualizar Genero!</div>";
                 }
             }
-            return View("cadastrocor");
+            return View("cadastrogenero");
         }
 
-        public string Validar(tb_cor obj)
+        public string Validar(tb_genero obj)
         {
-            CorDB Cor = new CorDB();
+            GeneroDB Genero = new GeneroDB();
             if (String.IsNullOrEmpty(obj.Descricao))
             {
-                return "<div class='alert alert-warning text-center' role='alert'>Digite o nome da cor</div>";
+                return "<div class='alert alert-warning text-center' role='alert'>Digite o Genero</div>";
             }
-            if (Cor.ValidaCor(obj))
+            if (Genero.ValidaGenero(obj))
             {
                 return "<div class='alert alert-warning text-center' role='alert'>Cor já existente!</div>";
             }

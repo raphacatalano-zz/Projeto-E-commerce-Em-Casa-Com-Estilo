@@ -90,7 +90,7 @@ namespace ECCE.Data
                 }
             }
         }
-        public bool ValidaGenero(tb_cor obj)
+        public bool ValidaGenero(tb_genero obj)
 
         {
             try

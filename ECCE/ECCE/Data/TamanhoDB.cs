@@ -125,7 +125,7 @@ namespace ECCE.Data
                 MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
                 cn.Open();
 
-                sSQL = "select * from tb_cor order by descricao";
+                sSQL = "select * from tb_tamanho order by descricao";
 
                 cmd.CommandText = sSQL;
                 cmd.Connection = cn;
@@ -138,7 +138,7 @@ namespace ECCE.Data
                     var item = new tb_tamanho
                     {
                        CodigoTamanho = Convert.ToInt32(Dr["CodigoTamanho"]),
-                        Descricao = Dr["Descricao"].ToString()
+                       Descricao = Dr["Descricao"].ToString()
                     };
                     Lista.Add(item);
                 }
