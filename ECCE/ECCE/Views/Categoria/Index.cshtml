@@ -2,12 +2,14 @@
     @model List<tb_categoria>;
     ViewData["Title"] = "Home Page";
 
+    Layout = "_Layout_dashboard";
+
 }
 
 <div >
     <table class="table">
         <tr>
-            <th><h2>Categorias de Produtos</h2></th>
+            <th><h4>Categorias</h4></th>
             <th></th>
             <th></th>
             <th class="text-sm-right"><button class="btn btn-primary" type="button" onclick="window.location.href ='/categoria/cadastrocategoria'">Nova Categoria</button>

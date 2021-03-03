@@ -2,15 +2,17 @@
     @model List<tb_cor>;
     ViewData["Title"] = "Home Page";
 
+    Layout = "_Layout_dashboard";
+
 }
 
 <div >
     <table class="table">
         <tr>
-            <th><h2>Cores</h2></th>
+            <th><h4>Cores</h4></th>
             <th></th>
             <th></th>
-            <th class="text-sm-right"><button class="btn btn-primary" type="button" onclick="window.location.href ='/cor/cadastrocor'">Nova Categoria</button>
+            <th class="text-sm-right"><button class="btn btn-primary" type="button" onclick="window.location.href ='/cor/cadastrocor'">Nova Cor</button>
             <th>
         </tr>
     </table>

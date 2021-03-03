@@ -2,6 +2,7 @@
 using ECCE.Models;
 
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,20 @@ namespace ECCE.Controllers
             }
 
             ProdutoDB Prod = new ProdutoDB();
+
+            if (!String.IsNullOrWhiteSpace(obj.JsonLTCat))
+            {
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore,
+                    Culture = new System.Globalization.CultureInfo("pt-BR")
+                };
+
+                obj.tb_produto_categoria = JsonConvert.DeserializeObject<List<tb_produto_categoria>>(obj.JsonLTCat, settings);
+            }
+
+
 
             if (obj.tb_produto.CodigoProduto == 0)
             {

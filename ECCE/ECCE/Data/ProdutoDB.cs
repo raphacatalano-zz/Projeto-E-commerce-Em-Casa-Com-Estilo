@@ -22,17 +22,23 @@ namespace ECCE.Data
                 MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
                 cn.Open();
 
-                sSQL = "insert into tb_funcionario(Nome)values(@nome)";
+                sSQL = "insert into tb_produto (Nome, Descricao, valor, dataregistro, peso)values(@nome, @descricao, @valor, @dataregistro, @peso)";
                 cmd.Parameters.AddWithValue("@nome", obj.tb_produto.Nome);
+                cmd.Parameters.AddWithValue("@descricao", obj.tb_produto.Descricao);
+                cmd.Parameters.AddWithValue("@valor", obj.tb_produto.Valor);
+                cmd.Parameters.AddWithValue("@dataregistro", obj.tb_produto.DataRegistro);
+                cmd.Parameters.AddWithValue("@peso", obj.tb_produto.Peso);
+
+
+
+
 
                 cmd.CommandText = sSQL;
                 cmd.Connection = cn;
                 cmd.ExecuteNonQuery();
                 AddCategoria(obj);
                 AddCor(obj);
-                AddFoto(obj);
-                _ = AddGenero(obj);
-                AddTamanho(obj);
+
                 return true;
             }
             catch (Exception e)

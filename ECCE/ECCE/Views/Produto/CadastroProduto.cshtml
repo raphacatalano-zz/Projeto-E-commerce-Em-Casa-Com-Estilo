@@ -7,6 +7,8 @@
     var LTGenero = (List<SelectListItem>)(@ViewData["LTGenero"]);
     var LTTam = (List<SelectListItem>)(@ViewData["LTTam"]);
 
+    Layout = "_Layout_dashboard";
+
 }
 
 
@@ -28,6 +30,7 @@
         <input type="text" class="form-control" asp-for="tb_produto.Peso">
 
         <label asp-for="Categoria"></label>
+
         <select asp-for="Categoria" asp-items="LTCategorias" class="form-control"></select>
 
         <label asp-for="Cor"></label>
