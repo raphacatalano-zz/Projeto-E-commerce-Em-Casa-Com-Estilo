@@ -9,3 +9,56 @@
     <p class="display-3">Seja Bem Vindo(a) ao Dashboard ECCE 5.0 by Escolha Virtual Developer</p>
     <p class="display-3">Soluções em tecnologia para sua empresa</p>
 </div>
+
+
+
+<div id="canvas-holder" style="width:40%">
+    <canvas id="chart-area"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script>
+    var randomScalingFactor = function () {
+        return Math.round(Math.random() * 100);
+    };
+
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    "10",
+                    "20",
+                    "50",
+                    "15",
+                    "5",
+                ],
+                backgroundColor: [
+                    "#cecece",
+                    "#124545",
+                    "#12ccff",
+                    "#457511",
+                    "#451ccf",
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                'Red',
+                'Orange',
+                'Yellow',
+                'Green',
+                'Blue'
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+    window.onload = function () {
+        var ctx = document.getElementById('chart-area').getContext('2d');
+        window.myPie = new Chart(ctx, config);
+    };
+
+</script>
+
