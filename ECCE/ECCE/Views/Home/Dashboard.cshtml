@@ -4,6 +4,8 @@
     Layout = "_Layout_dashboard";
 
 }
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 <div class="text-center">
     <p class="display-3">Seja Bem Vindo(a) ao Dashboard ECCE 5.0 by Escolha Virtual Developer</p>
@@ -11,53 +13,127 @@
 </div>
 
 
+<p><h4>Gráfico de Vendas</h4></p>
+
+<div id="Column"></div>
+<p><h4>Gráfico de Vendas</h4></p>
+<div id="Bar"></div>
 <p><h4>Gráfico de Vendas por Gênero</h4></p>
-<div id="canvas-holder" style="width:50%">
-    <canvas id="chart-area"></canvas>
-</div>
+<div id="Line"></div>
+<p><h4>Gráfico de Vendas por Gênero</h4></p>
+<div id="Pie"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-<script>
-    var randomScalingFactor = function () {
-        return Math.round(Math.random() * 100);
-    };
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] })
+    google.charts.setOnLoadCallback(drawChart)
 
-    var config = {
-        type: 'pie',
-        data: {
-            datasets: [{
-                data: [
-                    "15",
-                    "20",
-                    "50",
-                    "15",
-
-                ],
-                backgroundColor: [
-                    "#cecece",
-                    "#124545",
-                    "#12ccff",
-                    "#457511",
- 
-                ],
-                label: 'Dataset 1'
-            }],
-            labels: [
-                'Masculino',
-                'Feminino',
-                'Infantil',
-                'Unissex',
-            ]
-        },
-        options: {
-            responsive: true
+    function drawChart() {
+        const container = document.querySelector('#Column')
+        const data = new google.visualization.arrayToDataTable([
+            ['Character', 'Ki'],
+            ['Goku', 10000],
+            ['Vegeta', 9000],
+            ['Gohan', 8000],
+            ['Freeza', 5000],
+            ['Piccolo', 2000]
+        ])
+        const options = {
+            title: 'Dragon Ball Z - Characters Ki',
+            height: 400,
+            width: 720
         }
-    };
 
-    window.onload = function () {
-        var ctx = document.getElementById('chart-area').getContext('2d');
-        window.myPie = new Chart(ctx, config);
-    };
-
+        const chart = new google.visualization.ColumnChart(container)
+        // const chart = new google.visualization.BarChart(container)
+        // const chart = new google.visualization.LineChart(container)
+        //const chart = new google.visualization.PieChart(container)
+        chart.draw(data, options)
+    }
 </script>
+
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] })
+    google.charts.setOnLoadCallback(drawChart)
+
+    function drawChart() {
+        const container = document.querySelector('#Bar')
+        const data = new google.visualization.arrayToDataTable([
+            ['Character', 'Ki'],
+            ['Goku', 10000],
+            ['Vegeta', 9000],
+            ['Gohan', 8000],
+            ['Freeza', 5000],
+            ['Piccolo', 2000]
+        ])
+        const options = {
+            title: 'Dragon Ball Z - Characters Ki',
+            height: 400,
+            width: 720
+        }
+
+        //const chart = new google.visualization.ColumnChart(container)
+        const chart = new google.visualization.BarChart(container)
+        // const chart = new google.visualization.LineChart(container)
+        //const chart = new google.visualization.PieChart(container)
+        chart.draw(data, options)
+    }
+</script>
+
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] })
+    google.charts.setOnLoadCallback(drawChart)
+
+    function drawChart() {
+        const container = document.querySelector('#Line')
+        const data = new google.visualization.arrayToDataTable([
+            ['Character', 'Ki'],
+            ['Goku', 10000],
+            ['Vegeta', 9000],
+            ['Gohan', 8000],
+            ['Freeza', 5000],
+            ['Piccolo', 2000]
+        ])
+        const options = {
+            title: 'Dragon Ball Z - Characters Ki',
+            height: 400,
+            width: 720
+        }
+
+        //const chart = new google.visualization.ColumnChart(container)
+        //const chart = new google.visualization.BarChart(container)
+        const chart = new google.visualization.LineChart(container)
+        //const chart = new google.visualization.PieChart(container)
+        chart.draw(data, options)
+    }
+</script>
+
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] })
+    google.charts.setOnLoadCallback(drawChart)
+
+    function drawChart() {
+        const container = document.querySelector('#Pie')
+        const data = new google.visualization.arrayToDataTable([
+            ['Character', 'Ki'],
+            ['Goku', 10000],
+            ['Vegeta', 9000],
+            ['Gohan', 8000],
+            ['Freeza', 5000],
+            ['Piccolo', 2000]
+        ])
+        const options = {
+            title: 'Dragon Ball Z - Characters Ki',
+            height: 400,
+            width: 720
+        }
+
+        //const chart = new google.visualization.ColumnChart(container)
+        // const chart = new google.visualization.BarChart(container)
+        // const chart = new google.visualization.LineChart(container)
+        const chart = new google.visualization.PieChart(container)
+        chart.draw(data, options)
+    }
+</script>
+
+
 
