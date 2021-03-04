@@ -58,12 +58,12 @@
     function drawChart() {
         const container = document.querySelector('#Bar')
         const data = new google.visualization.arrayToDataTable([
-            ['Character', 'Ki'],
-            ['Goku', 10000],
-            ['Vegeta', 9000],
-            ['Gohan', 8000],
-            ['Freeza', 5000],
-            ['Piccolo', 2000]
+            ['Character', 'Ki', { role: 'style' }],
+            ['Goku', 10000, 'silver'],
+            ['Vegeta', 9000, 'gold'],
+            ['Gohan', 8000, 'red'],
+            ['Freeza', 5000, 'blue'],
+            ['Piccolo', 2000, 'green']
         ])
         const options = {
             title: 'Dragon Ball Z - Characters Ki',
