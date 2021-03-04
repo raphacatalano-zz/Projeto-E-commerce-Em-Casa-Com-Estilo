@@ -37,6 +37,9 @@ namespace ECCE.Models
         [Display(Name = "Valor", Prompt = "")]
         public double Valor { get; set; }
 
+        [Display(Name = "Fotos", Prompt = "")]
+        public double Foto { get; set; }
+
         [Display(Name = "Data Registro", Prompt = "")]
         public DateTime DataRegistro { get; set; }
 

@@ -214,6 +214,7 @@ input:focus {
     -webkit-transition: all 100ms ease-in;
     -moz-transition: all 100ms ease-in;
     -o-transition: all 100ms ease-in;
+    -
     -ms-transition: all 100ms ease-in;
     transition: all 100ms ease-in;
 }
@@ -255,7 +256,7 @@ input:focus {
     width: 260px;
     z-index: 4;
     padding-bottom: 100px;
-    overflow: hidden;
+
     background: rgb(121,121,121);
     background: linear-gradient(356deg, rgba(121,121,121,1) 0%, rgba(80,80,80,1) 35%, rgba(0,0,0,1) 100%);
 }
@@ -1375,7 +1376,7 @@ fieldset[disabled] .btn-neutral.active {
     border-color: #ccc;
     position: relative;
     text-align: left;
-    overflow: hidden;
+
     line-height: 8px;
     z-index: 0;
     -webkit-user-select: none;
@@ -3549,7 +3550,7 @@ fieldset[disabled] .btn-neutral.active {
         width: 100%;
         margin-bottom: 15px;
         overflow-x: scroll;
-        overflow-y: hidden;
+
         -ms-overflow-style: -ms-autohiding-scrollbar;
         -webkit-overflow-scrolling: touch;
     }
