@@ -13,10 +13,10 @@
 </div>
 
 
-<p><h4>Gráfico de Vendas</h4></p>
+<p><h4>Tamanho</h4></p>
 
 <div id="Column"></div>
-<p><h4>Gráfico de Vendas</h4></p>
+<p><h4>Gráfico de V</h4></p>
 <div id="Bar"></div>
 <p><h4>Gráfico de Vendas por Gênero</h4></p>
 <div id="Line"></div>
@@ -30,7 +30,7 @@
     function drawChart() {
         const container = document.querySelector('#Column')
         const data = new google.visualization.arrayToDataTable([
-            ['Character', 'Ki'],
+            ['Tamanho', 'Quantidade'],
             ['Goku', 10000],
             ['Vegeta', 9000],
             ['Gohan', 8000],
@@ -38,7 +38,7 @@
             ['Piccolo', 2000]
         ])
         const options = {
-            title: 'Dragon Ball Z - Characters Ki',
+            title: 'Tamanho',
             height: 400,
             width: 720
         }
