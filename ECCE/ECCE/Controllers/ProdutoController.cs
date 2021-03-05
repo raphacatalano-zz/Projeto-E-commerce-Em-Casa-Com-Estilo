@@ -14,8 +14,9 @@ namespace ECCE.Controllers
     {
         public IActionResult Index()
         {
-
-            return View();
+            ProdutoDB Produto = new ProdutoDB();
+            var MLista = Produto.GetAllProduto();
+            return View(MLista);
         }
                
         public IActionResult CadastroProduto()

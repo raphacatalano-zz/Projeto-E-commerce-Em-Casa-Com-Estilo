@@ -11,9 +11,6 @@
 
 }
 
-
-
-
 <h1>Cadastro de Produto</h1>
 
 <form asp-action="Salvar" asp-controller="Produto">
@@ -33,18 +30,18 @@
         <!--E a Data Cadastro?-->
 
         <input type="hidden" asp-for="tb_produto.CodigoProduto">
+
         <input type="hidden" asp-for="JsonLTCat">
         <input type="hidden" asp-for="JsonLTCor">
         <input type="hidden" asp-for="JsonLTGen">
         <input type="hidden" asp-for="JsonLTTam">
         <input type="hidden" asp-for="JsonLTFoto">
-
     </div>
 
     <div class="row">
         <div class="form-group col-md-4">
             <label asp-for="Foto"></label>
-            <button type="submit" class="btn btn-primary">Escolher Foto</button><br />
+            <button type="submit" class="btn btn-primary" onclick="";>Carregar</button><br />
         </div>
     </div>
 
@@ -54,7 +51,19 @@
             <select asp-for="Cor" asp-items="LTCor" class="form-control"></select>
         </div>
         <div class="form-group col-md-4">
-            <button type="button" class="btn btn-success" style="margin-top:30px;" onclick="AddCat();">Adicionar Cor</button>
+            <button type="button" class="btn btn-success" style="margin-top:25px"; onclick="AddCat();">Adicionar Cor</button>
+        </div>
+        <div>
+            <table id="tb_cat" class="table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Cor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -64,7 +73,19 @@
             <select asp-for="Genero" asp-items="LTGenero" class="form-control"></select>
         </div>
         <div class="form-group col-md-4">
-            <button type="button" class="btn btn-success" style="margin-top:30px;" onclick="AddCat();">Adicionar Gênero</button>
+            <button type="button" class="btn btn-success" style="margin-top:25px;" onclick="AddCat();">Adicionar Gênero</button>
+        </div>
+        <div>
+            <table id="tb_cat" class="table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Genero</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -74,7 +95,19 @@
             <select asp-for="Tamanho" asp-items="LTTam" class="form-control"></select>
         </div>
         <div class="form-group col-md-4">
-            <button type="button" class="btn btn-success" style="margin-top:30px;" onclick="AddCat();">Adicionar Tamanho</button>
+            <button type="button" class="btn btn-success" style="margin-top:25px; onclick="AddCat();">Adicionar Tamanho</button>
+        </div>
+        <div>
+            <table id="tb_cat" class="table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Tamanho</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -84,8 +117,18 @@
             <select asp-for="Categoria" asp-items="LTCategorias" class="form-control" id="txt_cat_descricao"></select>
         </div>
         <div class="form-group col-md-4">
-            <button type="button" class="btn btn-success" style="margin-top:30px;" onclick="AddCat();">Adicionar Categoria</button>
+            <button type="button" class="btn btn-success" style="margin-top:25px;" onclick="AddCat();">Adicionar Categoria</button>
         </div>
+        <table id="tb_cat" class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 
     @Html.Raw(ViewData["Valida"])
@@ -95,14 +138,7 @@
 </form>
 
 <script>
-    var MtzCat;
-
-    if ($("#JsonLTCat").val() != "") {
-        MtzCat = JSON.parse($("#JsonLTCat").val());
-    }
-    else {
-        MtzCat = [];
-    }
+    var MtzCat = [];
 
     $(document).ready(function () {
         GetTabela();
@@ -131,7 +167,7 @@
             sHtml += "<td>" + MtzCat[x].Descricao + "</td>";
             sHtml += "<td><a href='##' onclick='ExcluirCat(" + x + ")'>Excluir</a></td>";
             sHtml += "</tr>";
-            $("#tb_Cat > tbody ").append(sHtml);
+            $("#tb_cat > tbody ").append(sHtml);
         }
     }
 
