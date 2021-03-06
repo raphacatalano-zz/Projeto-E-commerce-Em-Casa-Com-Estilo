@@ -34,7 +34,7 @@ namespace ECCE.Models
 
     public class tb_tamanho
     {
-        public int CodigoTmanho { get; set; }
+        public int CodigoTamanho { get; set; }
         public string Descricao { get; set; }
     }
 }

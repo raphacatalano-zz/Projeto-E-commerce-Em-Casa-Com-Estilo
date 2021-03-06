@@ -2,9 +2,11 @@
 @{
     @model tb_categoria;
     ViewData["Title"] = "Categorias";
+
+    Layout = "_Layout_dashboard";
 }
 
-<h4>Cadastro de Categorias</h4>
+<h4>Categorias</h4>
 
 <form asp-action="Salvar" asp-controller="Categoria">
     <div class="form-group">

@@ -22,17 +22,19 @@ namespace ECCE.Data
                 MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
                 cn.Open();
 
-                sSQL = "insert into tb_funcionario(Nome)values(@nome)";
+                sSQL = "insert into tb_produto (Nome, Descricao, valor, dataregistro, peso)values(@nome, @descricao, @valor, @dataregistro, @peso)";
                 cmd.Parameters.AddWithValue("@nome", obj.tb_produto.Nome);
+                cmd.Parameters.AddWithValue("@descricao", obj.tb_produto.Descricao);
+                cmd.Parameters.AddWithValue("@valor", obj.tb_produto.Valor);
+                cmd.Parameters.AddWithValue("@dataregistro", obj.tb_produto.DataRegistro);
+                cmd.Parameters.AddWithValue("@peso", obj.tb_produto.Peso);
 
                 cmd.CommandText = sSQL;
                 cmd.Connection = cn;
                 cmd.ExecuteNonQuery();
                 AddCategoria(obj);
                 AddCor(obj);
-                AddFoto(obj);
-                _ = AddGenero(obj);
-                AddTamanho(obj);
+
                 return true;
             }
             catch (Exception e)
@@ -502,6 +504,47 @@ namespace ECCE.Data
             {
                 string msg = e.Message;
                 return false;
+            }
+        }
+
+        public List<tb_produto> GetAllProduto()
+        {
+
+            try
+            {
+                string sSQL = "";
+                MySqlCommand cmd = new MySqlCommand();
+                MySqlConnection cn = new MySqlConnection(CConexao.Get_StringConexao());
+                cn.Open();
+
+                sSQL = "select * from tb_produto order by nome";
+
+                cmd.CommandText = sSQL;
+                cmd.Connection = cn;
+                var Dr = cmd.ExecuteReader();
+
+                var Lista = new List<tb_produto>();
+
+                while (Dr.Read())
+                {
+                    var item = new tb_produto
+                    {
+                        CodigoProduto = Convert.ToInt32(Dr["CodigoProduto"]),
+                        Nome = Dr["Nome"].ToString(),
+                        Descricao = Dr["Descricao"].ToString(),
+                        Valor = Convert.ToDouble(Dr["Valor"]),
+                        DataRegistro = Convert.ToDateTime(Dr["DataRegistro"]),
+                        Peso = Convert.ToDouble(Dr["Peso"]),
+                    };
+                    Lista.Add(item);
+                }
+
+                return Lista;
+            }
+            catch (Exception e)
+            {
+                string msg = e.Message;
+                return null;
             }
         }
 

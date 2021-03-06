@@ -1,10 +1,69 @@
 ﻿@{
+    @model List<ProdutoModel>;
     ViewData["Title"] = "Home Page";
 
 }
 
 <div class="text-center">
-    <h1 class="display-4">Quem Somos</h1>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Categoria" asp-action="Index">Categoria</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="CadastroProduto">Cadrastro de produto</a>
+    <a class="nav-link text-dark display-4" asp-area="" asp-controller="Home" asp-action="Dashboard">Ir para o Dashboard</a>
 </div>
+
+
+
+<!--
+
+<div class="featured-product product">
+    <div class="container-fluid">
+        <div class="section-header">
+            <h1>Featured Product</h1>
+        </div>
+    </div>
+</div>
+
+
+<di>
+        if (Model.Count > 0)
+            foreach (var item in Model)
+            {
+                <div class="row align-items-center product-slider product-slider-4">
+                    <div class="col-lg-3">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="#">Product Name</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.html">
+                                    <img src="item.tb_produto.Foto" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>item.tb_produto.Valor</h3>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-primary" role="alert">
+                    Sem Registros!
+                </div>
+            }
+
+</div>
+
+
+-->

@@ -1,0 +1,35 @@
+﻿
+@{
+    @model tb_login;
+    ViewData["Title"] = "Categorias";
+
+    Layout = "_Layout_dashboard";
+}
+
+<h4>Cadastro de Cor</h4>
+
+<form asp-action="SalvarCliente" asp-controller="Usuario">
+    <div class="form-group">
+        <label asp-for="Nome"></label>
+        <input type="text" class="form-control" asp-for="Nome">
+        <label asp-for="Email"></label>
+        <input type="email" class="form-control" asp-for="Email">
+        <label asp-for="Telefone"></label>
+        <input type="tel" class="form-control" asp-for="Telefone">
+        <label asp-for="CPF_CNPJ"></label>
+        <input type="text" class="form-control" asp-for="CPF_CNPJ">
+        <label asp-for="Senha"></label>
+        <input type="password" class="form-control" asp-for="Senha">
+
+
+        <input type="hidden" asp-for="CodigoLogin">
+        <input type="hidden" asp-for="Tipo">
+        <input type="hidden" asp-for="Ativo">
+    </div>
+
+    @Html.Raw(ViewData["Valida"])
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
+
+</form>
+
